@@ -5,6 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 100vh;
     box-sizing: border-box;
     max-width: 1000px;
@@ -13,6 +14,7 @@ body {
 }
 
 .container {
+    margin-top: 70px;
     background: white;
     padding: 20px;
     border-radius: 10px;
@@ -75,3 +77,14 @@ button:hover {
     border-bottom: 1px solid #ddd;
 }
 
+@media (max-height: 500px) {
+    body {
+        display: block;
+        padding-top: 20px;
+    }
+
+    .container {
+        margin: 40px auto 0; 
+        position: relative; 
+    }
+}

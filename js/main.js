@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const result = eval(currentOperation);
             display.value = result;
             saveToHistory(`${currentOperation} = ${result}`); // Guardar operación en el historial
+            currentOperation = result.toString();
         } catch (error) {
             display.value = "Error";
             // La operación se resetea en caso de error

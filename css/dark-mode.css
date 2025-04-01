@@ -14,6 +14,7 @@
 }
 
 .switch-container {
+    position: fixed;
     height: 50px;
     top: 0;
     width: 100vw;
@@ -64,4 +65,14 @@ input:checked + .slider {
 
 input:checked + .slider:before {
     transform: translateX(25px);
+}
+
+@media (max-height: 500px) {
+    .switch-container {
+        justify-content: center;
+    }
+
+    .switch {
+        transform: translateX(-12.5px);
+    }
 }
