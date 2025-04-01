@@ -13,11 +13,18 @@
     color: white;
 }
 
+.switch-container {
+    height: 50px;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 3rem;
+    max-width: 1200px;
+}
 
 .switch {
-    position: absolute;
-    top: 10px;
-    right: 50px;
     width: 50px;
     height: 25px;
 }
@@ -52,7 +59,7 @@
 
 /* Cuando está activado (modo oscuro) */
 input:checked + .slider {
-    background-color: #4CAF50;
+    background-color: #004e89;
 }
 
 input:checked + .slider:before {
