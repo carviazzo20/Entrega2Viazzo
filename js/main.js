@@ -6,18 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const historyContainer = document.getElementById("history-container");
     const historyList = document.getElementById("history-list");
 
-    let currentOperation = ""; // Variable para almacenar la operación actual
+    // Variable para almacenar la operación actual
+    let currentOperation = ""; 
 
     // Mostrar el historial de operaciones
     historyToggle.addEventListener("click", () => {
         historyContainer.style.display = historyContainer.style.display === "none" ? "block" : "none";
-        displayHistory(); // Mostrar historial al hacer click
+        displayHistory();
     });
 
     // Borrar el historial
     clearHistoryBtn.addEventListener("click", () => {
         localStorage.removeItem("history");
-        displayHistory(); // Actualizar la vista del historial
+        displayHistory();
     });
 
     // Función para añadir un valor a la operación actual
@@ -41,16 +42,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // Función para calcular la operación
     function calculate() {
         try {
+            // Maneja el evento en el que se presiona igual (=) sin operación
+            if (currentOperation === "") return;
             const result = eval(currentOperation);
             display.value = result;
-            saveToHistory(`${currentOperation} = ${result}`); // Guardar operación completa en el historial
-            currentOperation = ""; // Limpiar operación después de calcular
+            saveToHistory(`${currentOperation} = ${result}`); // Guardar operación en el historial
         } catch (error) {
             display.value = "Error";
+            // La operación se resetea en caso de error
+            currentOperation = "";
         }
     }
 
-    // Guardar la operación en el historial
+    // Guardar la operación en el historial usando el localStorage
     function saveToHistory(operation) {
         let history = JSON.parse(localStorage.getItem("history")) || [];
         history.push(operation); // Guardar operación con el resultado
@@ -90,8 +94,10 @@ document.addEventListener("DOMContentLoaded", () => {
         return result;
     }
 
+    // Función que garantiza que los eventos click on button de borrar historial y/o
+    // mostrar historial no afectan los valores del input
     function noCalculate() {
-        display.value = null;
+        display.value = appendValue(value);
     }
 
     // Añadir evento para los botones
@@ -105,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
             else if (action === "calculate") calculate();
             else if (action === "factorial") calculateFactorial();
             else if (action === "none") noCalculate();
-            else appendValue(value);  // Solo agregar valores de números y operadores
+            else appendValue(value);
         });
     });
 });
